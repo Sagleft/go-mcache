@@ -1,4 +1,4 @@
-package memorycache
+package mcache
 
 import (
 	"errors"
@@ -22,7 +22,7 @@ type Item struct {
 	Created    time.Time
 }
 
-// New. Initializing a new memory cache
+// New - Initializing a new memory cache
 func New(defaultExpiration, cleanupInterval time.Duration) *Cache {
 
 	items := make(map[string]Item)

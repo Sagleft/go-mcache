@@ -1,4 +1,4 @@
-package memorycache
+package mcache
 
 import (
 	"testing"

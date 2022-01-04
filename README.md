@@ -34,3 +34,9 @@ cache.Set("myKey", "My value", 5 * time.Minute)
 // Получить кеш с ключем "myKey"
 i := cache.Get("myKey")
 ```
+
+---
+
+![image](https://github.com/Sagleft/Sagleft/raw/master/image.png)
+
+### :globe_with_meridians: [Telegram канал](https://t.me/+VIvd8j6xvm9iMzhi)

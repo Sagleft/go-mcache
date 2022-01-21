@@ -44,7 +44,7 @@ func New(defaultExpiration, cleanupInterval time.Duration) *Cache {
 }
 
 // Set setting a cache by key
-func (c *Cache) Set(key string, value interface{}, duration time.Duration) {
+func (c *Cache) Set(key interface{}, value interface{}, duration time.Duration) {
 
 	var expiration int64
 
@@ -69,7 +69,7 @@ func (c *Cache) Set(key string, value interface{}, duration time.Duration) {
 }
 
 // Get getting a cache by key
-func (c *Cache) Get(key string) (interface{}, bool) {
+func (c *Cache) Get(key interface{}) (interface{}, bool) {
 
 	c.RLock()
 
@@ -96,7 +96,7 @@ func (c *Cache) Get(key string) (interface{}, bool) {
 
 // Delete cache by key
 // Return false if key not found
-func (c *Cache) Delete(key string) error {
+func (c *Cache) Delete(key interface{}) error {
 
 	c.Lock()
 

@@ -7,10 +7,12 @@ import (
 	"time"
 )
 
+type itemsMap map[interface{}]Item
+
 // Cache struct cache
 type Cache struct {
 	sync.RWMutex
-	items             map[string]Item
+	items             itemsMap
 	defaultExpiration time.Duration
 	cleanupInterval   time.Duration
 }
@@ -25,7 +27,7 @@ type Item struct {
 // New - Initializing a new memory cache
 func New(defaultExpiration, cleanupInterval time.Duration) *Cache {
 
-	items := make(map[string]Item)
+	items := make(itemsMap)
 
 	// cache item
 	cache := Cache{
@@ -42,7 +44,7 @@ func New(defaultExpiration, cleanupInterval time.Duration) *Cache {
 }
 
 // Set setting a cache by key
-func (c *Cache) Set(key string, value interface{}, duration time.Duration) {
+func (c *Cache) Set(key interface{}, value interface{}, duration time.Duration) {
 
 	var expiration int64
 
@@ -67,7 +69,7 @@ func (c *Cache) Set(key string, value interface{}, duration time.Duration) {
 }
 
 // Get getting a cache by key
-func (c *Cache) Get(key string) (interface{}, bool) {
+func (c *Cache) Get(key interface{}) (interface{}, bool) {
 
 	c.RLock()
 
@@ -94,7 +96,7 @@ func (c *Cache) Get(key string) (interface{}, bool) {
 
 // Delete cache by key
 // Return false if key not found
-func (c *Cache) Delete(key string) error {
+func (c *Cache) Delete(key interface{}) error {
 
 	c.Lock()
 
@@ -135,7 +137,7 @@ func (c *Cache) GC() {
 }
 
 // expiredKeys returns key list which are expired.
-func (c *Cache) expiredKeys() (keys []string) {
+func (c *Cache) expiredKeys() (keys []interface{}) {
 
 	c.RLock()
 
@@ -151,7 +153,7 @@ func (c *Cache) expiredKeys() (keys []string) {
 }
 
 // clearItems removes all the items which key in keys.
-func (c *Cache) clearItems(keys []string) {
+func (c *Cache) clearItems(keys []interface{}) {
 
 	c.Lock()
 

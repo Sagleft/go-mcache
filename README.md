@@ -1,16 +1,16 @@
-# Go-memorycache-example
-Менеджер кеша в памяти на Golang, хранилище данных в формате ключ/значение
+# go-mcache
 
+In-memory cache manager in Golang, key/value data storage with storage duration
 
-## Как установить?
+## Install
 
 ```bash
 go get github.com/Sagleft/go-mcache
 ```
 
-## Как использовать?
+## Usage example
 
-Необходимо импортировать пакет
+Import package
 
 ```go
 import (
@@ -18,20 +18,20 @@ import (
 )
 ```
 
-Инициализировать кеш
+Init cache
 
 ```go
-// Создаем кеш с временем жизни по-умолчанию равным 5 минут и удалением просроченного кеша каждые 10 минут
-cache := memorycache.New(5 * time.Minute, 10 * time.Minute)
+// Create a cache with a default lifetime of 5 minutes and delete expired caches every 10 minutes
+cache := memorycache.New(5 * time.Minute, 1 * time.Minute)
 ```
 
-Использовать
+Usage
 
 ```go
-// Установить кеш с ключем "myKey" и временем жизни 5 минут
+// Install the cache with the key "myKey" and a lifetime of 5 minutes
 cache.Set("myKey", "My value", 5 * time.Minute)
 
-// Получить кеш с ключем "myKey"
+// Get the cache with the "myKey" key
 i := cache.Get("myKey")
 ```
 
@@ -39,4 +39,4 @@ i := cache.Get("myKey")
 
 ![image](https://github.com/Sagleft/Sagleft/raw/master/image.png)
 
-### :globe_with_meridians: [Telegram канал](https://t.me/+VIvd8j6xvm9iMzhi)
+### :globe_with_meridians: [Telegram](https://t.me/+VIvd8j6xvm9iMzhi)

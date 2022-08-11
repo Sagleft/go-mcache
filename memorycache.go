@@ -163,3 +163,8 @@ func (c *Cache) clearItems(keys []interface{}) {
 		delete(c.items, k)
 	}
 }
+
+// GetItemsCount - get cache items count
+func (c *Cache) GetItemsCount() int {
+	return len(c.items)
+}
